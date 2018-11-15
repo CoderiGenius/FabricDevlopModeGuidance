@@ -9,7 +9,7 @@
 ### 2、	使用方法：
 > 我们这里假设我们编写的智能合约就是官方提供的示例合约chaincode_example02。该智能合约模拟了一个银行，其中含有a和b两个账户，并模拟执行转账操作
 #### （1）	进入 /opt/gopath/src/github.com/hyperledger/fabric-****/chaincode/ 目录 
-#### （2）	执行 ./startup.sh up
+#### （2）	运行service docker start 后执行 ./start.sh up
 #### （3）	等待执行ok，没有报错后
 #### （4）	进入 /opt/gopath/src/github.com/hyperledger/fabric/example/chaincode/go/chaincode_example02/ 文件夹 （注，这里只是举例，假设智能合约为chaincode_example02，自己写的智能合约请到该文件夹中新建，然后执行下一步）
 #### （5）	执行 go build 并执行 ls  查看文件名为 chaincode_example02 的二进制文件是否正常生成 
@@ -44,3 +44,20 @@ FABRIC_CFG_PATH=./sampleconfig peer chaincode query -n mycc -c '{"Args":["query"
 #### 请使用go语言来编写智能合约，并在  /opt/gopath/src/github.com/hyperledger/fabric/example/chaincode/go/ 路径下新建一个自己命名的文件夹，把自己写的智能合约放到这个文件夹下，按照 2 里面的步骤执行。
  **注意 2 中各小项的参数需要自己根据情况修改！**
  
+ 
+ 
+
+---
+
+> 附docker清理命令
+每次运行结束区块链网络需要重新部署运行时，需要清理之前的docker容器，不然会启动报错。
+这里附上docker删除命令
+
+## 停止所有容器
+```
+docker stop $(docker ps -q)
+```
+## 删除所有容器
+```
+docker rm $(docker ps -aq)
+```
