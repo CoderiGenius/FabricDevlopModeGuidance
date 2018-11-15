@@ -55,9 +55,9 @@ FABRIC_CFG_PATH=./sampleconfig peer chaincode query -n mycc -c '{"Args":["query"
 
 ## 停止所有容器
 ```
-docker stop $(docker ps -q)
+docker stop $(docker ps -a -q)
 ```
 ## 删除所有容器
 ```
-docker rm $(docker ps -aq)
+docker rm $(docker ps -a -q)
 ```
