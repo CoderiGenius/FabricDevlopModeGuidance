@@ -98,6 +98,11 @@ ansible -i inventories/example.com/hosts -u root  all  -m command -a "pwd"
 ```
 ansible -i inventories/example.com/hosts -u root  all  -m copy -a "src=./inventories/example.com/etc_hosts dest=/etc/hosts"
 ```
+关闭防火墙(这一点所有的机器都要执行)
+```
+service firewalld stop
+```
+
 4 部署节点
 ```
 ansible-playbook -i inventories/example.com/hosts -u root deploy_nodes.yml
@@ -232,3 +237,5 @@ docker run -p 5984:5984 -d couchdb:2.1.1
 supervisorctl start peer
 supervisorctl start orderer
 ```
+## 部署节点的时候出现数据库连接问题
+这里的ansible playbook上使用的是2.3版本的couchdb，需要到roles文件夹中的couchdb文件夹中把task中的start couchdb删掉。
